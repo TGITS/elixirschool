@@ -9,8 +9,8 @@ Chaînes de caractères, Listes de caractères, Graphèmes and point de code.
 
 ## Strings
 
-Elixir strings are nothing but a sequence of bytes.
-Let's look at an example:
+Les chaînes de caractères en Elixir ne sont rien d'autres qu'une séquence d'octets.
+Regardons un exemple :
 
 ```elixir
 iex> string = <<104,101,108,108,111>>
@@ -19,19 +19,19 @@ iex> string <> <<0>>
 <<104, 101, 108, 108, 111, 0>>
 ```
 
-By concatenating the string with the byte `0`, IEx displays the string as a binary because it is not a valid string anymore.
-This trick can help us view the underlying bytes of any string.
+En concaténant la chaîne de caractères avec l'octet `0`, IEx affiche la chaîne de caractères comme un `binary` parce que ce n'est plus une chaîne de caractères valide.
+Cette astuce nous aide à voir les octets sous-jacents à toutes chaîne de caractères.
 
->NOTE: Using << >> syntax we are saying to the compiler that the elements inside those symbols are bytes.
+>NOTE: En utilisant la syntaxe << >> nous disons au compilateur que les éléments à l'intérieur des chevrons sont des octets.
 
 ## Charlists
 
-Internally, Elixir strings are represented with a sequence of bytes rather than an array of characters.
-Elixir also has a char list type (character list).
-Elixir strings are enclosed with double quotes, while char lists are enclosed with single quotes.
+En interne, les chaînes de caractères d'Elixir sont représentées avec une séquence d'octets plutôt que par un tableau de caractères.
+Elixir possède également un type `charlist` (liste de charactères).
+Les chaînes Elixir sont délimités par des doubles guillemets, tandis que les `charlist` sont délimités par des guillemets simples.
 
-What's the difference? Each value in a charlist is the Unicode code point of a character whereas in a binary, the codepoints are encoded as UTF-8.
-Let's dig in:
+Quelle est la différence ? Chaque valeur dans une `charlist` est le point de code Unicode d'un caractère, alors que dans un `binary`, les _codepoints_ sont encodés comme de l'UTF-8.
+Creusons cela :
 
 ```elixir
 iex> 'hełło'
@@ -40,21 +40,21 @@ iex> "hełło" <> <<0>>
 <<104, 101, 197, 130, 197, 130, 111, 0>>
 ```
 
-`322` is the Unicode codepoint for ł but it is encoded in UTF-8 as the two bytes `197`, `130`.
+`322` est le point de code Unicode pour ł mais il est encodé en UTF-8 comme les 2 octets `197`, `130`.
 
-You can get a character’s code point by using `?`
+Vous pouvez obtenir le point de code d'un caractère en utilisant `?`
 
 ```elixir
 iex> ?Z
 90
 ```
 
-This allows you to use the notation `?Z` rather than 'Z' for a symbol.
+Cela vous permet d'utiliser la notation `?Z` plutôt que 'Z' comme symbole.
 
-When programming in Elixir, we usually use strings, not charlists.
-The charlist support is mainly included because it is required for some Erlang modules.
+Quand on programme en Elixir, nous utilisons habituellement les chaînes de caractères, pas les `charlist`.
+Le support de `charlist` est principalement inclus car il est requis par certains modules Erlang.
 
-For further information, see the official [`Getting Started Guide`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
+Pour plus d'informations, regardez le [`Guide de démarrage officiel`](http://elixir-lang.org/getting-started/binaries-strings-and-char-lists.html).
 
 ## Graphemes and Codepoints
 
